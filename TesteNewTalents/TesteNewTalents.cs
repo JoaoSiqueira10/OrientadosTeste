@@ -5,14 +5,21 @@ namespace TesteNewTalents
 {
     public class TesteNewTalents
     {
+        public Calculadora ConstruirClasse()
+        {
+            string Data = "02/02/2020";
+            Calculadora Calc = new Calculadora("02/02/2020");
+            return Calc;
+        }
+
         [Theory]
         [InlineData(1, 2, 3)]
         [InlineData(4, 5, 9)]
         public void TesteSomar(int Num1, int Num2, int Resultado)
         {
-            Calculadora calc = new Calculadora();
+            Calculadora calc = ConstruirClasse();
 
-            int ResultadoCalculadora = calc.Somar(1, 2);
+            int ResultadoCalculadora = calc.Somar(Num1, Num2);
 
             Assert.Equal(Resultado, ResultadoCalculadora);
         }
@@ -22,9 +29,9 @@ namespace TesteNewTalents
         [InlineData(5, 5, 0)]
         public void TesteSubtrair(int Num1, int Num2, int Resultado)
         {
-            Calculadora calc = new Calculadora();
+            Calculadora calc = ConstruirClasse();
 
-            int ResultadoCalculadora = calc.Subtrair(1, 2);
+            int ResultadoCalculadora = calc.Subtrair(Num1, Num2);
 
             Assert.Equal(Resultado, ResultadoCalculadora);
         }
@@ -34,9 +41,9 @@ namespace TesteNewTalents
         [InlineData(4, 5, 20)]
         public void TesteMultiplicar(int Num1, int Num2, int Resultado)
         {
-            Calculadora calc = new Calculadora();
+            Calculadora calc = ConstruirClasse();
 
-            int ResultadoCalculadora = calc.Multiplicar(1, 2);
+            int ResultadoCalculadora = calc.Multiplicar(Num1, Num2);
 
             Assert.Equal(Resultado, ResultadoCalculadora);
         }
@@ -46,9 +53,9 @@ namespace TesteNewTalents
         [InlineData(5, 5, 1)]
         public void TesteDividir(int Num1, int Num2, int Resultado)
         {
-            Calculadora calc = new Calculadora();
+            Calculadora calc = ConstruirClasse();
 
-            int ResultadoCalculadora = calc.Dividir(1, 2);
+            int ResultadoCalculadora = calc.Dividir(Num1, Num2);
 
             Assert.Equal(Resultado, ResultadoCalculadora);
         }
@@ -56,7 +63,7 @@ namespace TesteNewTalents
         [Fact]
         public void TesteDividirPorZero() 
         {
-            Calculadora calc = new Calculadora();
+            Calculadora calc = ConstruirClasse();
 
             Assert.Throws<DivideByZeroException>(
                 () => calc.Dividir(3, 0)
@@ -66,7 +73,7 @@ namespace TesteNewTalents
         [Fact]
         public void TesteHistorico()
         {
-            Calculadora calc = new Calculadora();
+            Calculadora calc = ConstruirClasse();
 
             calc.Somar(1, 2);
             calc.Somar(2, 8);
